@@ -2,7 +2,7 @@
   <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
-      <!-- login -->
+      <!-- email -->
       <div class="input-field">
         <input 
           id="email" 
@@ -21,7 +21,7 @@
           v-else-if="$v.email.$dirty && !$v.email.email"
         >Введите корректный Email</small>
       </div> 
-      <!-- login end -->
+      <!-- email end -->
 
       <!-- password -->
       <div class="input-field">
