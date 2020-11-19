@@ -114,7 +114,7 @@ export default {
 
       console.log(formData);
 
-      this.$router.push('/')
+      this.$router.push('/login')
     }
   }
 }
