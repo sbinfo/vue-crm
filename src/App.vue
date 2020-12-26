@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import EmptyLayout from '@/layouts/EmptyLayout'
-import MainLayout from '@/layouts/MainLayout'
+import EmptyLayout from '@/layouts/EmptyLayout';
+import MainLayout from '@/layouts/MainLayout';
 
 
 export default {
@@ -17,7 +17,7 @@ export default {
   },
   computed: {
     layout() {
-      return (this.$route.meta.layout || 'auth') + '-layout'
+      return (this.$route.meta.layout || 'main') + '-layout';
     }
   }
 }
