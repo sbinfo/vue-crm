@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import AuthLayout from '@/layouts/AuthLayout'
+import EmptyLayout from '@/layouts/EmptyLayout'
 import MainLayout from '@/layouts/MainLayout'
 
 
 export default {
   components: {
-    AuthLayout, MainLayout
+    EmptyLayout, MainLayout
   },
   computed: {
     layout() {

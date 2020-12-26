@@ -13,13 +13,13 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    meta: { layout: 'auth' },
+    meta: { layout: 'empty' },
     component: () => import('../views/Login.vue')
   },
   {
     path: '/register',
     name: 'Register',
-    meta: {layout: 'auth'},
+    meta: {layout: 'empty'},
     component: () => import('../views/Register.vue')
   },
   {
