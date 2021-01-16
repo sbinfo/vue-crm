@@ -1,15 +1,17 @@
 import firebase from 'firebase/app';
 
 export default {
+
   actions: {
-    async login({dispatch, commit}, {email, password}) {
+    async login({ dispatch, commit }, { email, password }) {
       try {
-         await firebase.auth().signInWithEmailAndPassword(email, password)
+        await firebase.auth().signInWithEmailAndPassword(email, password)
       } catch (e) {
-          throw e;
+        commit('setError', e);
+        throw e;
       }
     },
-    async register({dispatch}, {email, password, name}) {
+    async register({ dispatch, commit }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
         const uid = await dispatch('getUid');
@@ -17,9 +19,10 @@ export default {
           bill: 10000,
           name
         });
-     } catch (e) {
-         throw e;
-     }
+      } catch (e) {
+        commit('setError', e);
+        throw e;
+      }
     },
     getUid() {
       const user = firebase.auth().currentUser;
