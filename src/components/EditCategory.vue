@@ -7,8 +7,12 @@
 
       <form>
         <div class="input-field">
-          <select>
-            <option>Category</option>
+          <select ref="select">
+            <option
+              v-for="c in categories"
+              :key="c.id"
+              :value="c.id"
+            >{{ c.title }}</option>
           </select>
           <label>Выберите категорию</label>
         </div>
@@ -37,6 +41,24 @@
 <script>
 
 export default {
-
+  props: {
+    categories: {
+      type: Array,
+      required: true
+    }
+  },
+  data() {
+    return {
+      select: null
+    }
+  },
+  mounted() {
+    this.select = M.FormSelect.init(this.$refs.select);
+  },
+  destroyed() {
+    if (this.select && this.select.destroy) {
+      this.select.destroy();
+    }
+  }
 }
 </script>

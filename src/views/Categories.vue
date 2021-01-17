@@ -4,10 +4,11 @@
       <h3>Категории</h3>
     </div>
     <section>
-      <div class="row">
+      <Loader v-if="loading" />
+      <div v-else class="row">
         <CreateCategory @created="addNewCategory" />
 
-        <EditCategory />
+        <EditCategory :categories="categories" />
       </div>
     </section>
   </div>
@@ -21,8 +22,14 @@ export default {
   name: 'categories',
   data() {
     return {
-      categories: []
+      categories: [],
+      loading: true
     }
+  },
+  async mounted() {
+    // Добавляем сушествующие категории из базы в массив categories
+    this.categories = await this.$store.dispatch('fetchCategories');
+    this.loading = false;
   },
   components: {
     CreateCategory,
