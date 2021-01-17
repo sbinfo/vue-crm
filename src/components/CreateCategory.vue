@@ -50,12 +50,12 @@ export default {
   data() {
     return {
       title: '',
-      limit: 1
+      limit: 100
     }
   },
   validations: {
     title: { required },
-    limit: { minValue: minValue(1) }
+    limit: { minValue: minValue(100) }
   },
   mounted() {
     M.updateTextFields();
@@ -72,7 +72,12 @@ export default {
           title: this.title,
           limit: this.limit
         });
-        console.log(category)
+
+        this.title = '';
+        this.limit = 100;
+        this.$message('Категория была создана');
+        this.$v.reset();
+
       } catch (e) {}
     }
   }
