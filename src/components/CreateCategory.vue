@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { required, minValue } from 'vuelidate/lib/validators'
+import { required, minValue } from 'vuelidate/lib/validators';
 
 export default {
   data() {
@@ -58,6 +58,7 @@ export default {
     limit: { minValue: minValue(100) }
   },
   mounted() {
+    // Для повторной инициализации input materialize при добавление динамических данных
     M.updateTextFields();
   },
   methods: {

@@ -8,7 +8,13 @@
       <div v-else class="row">
         <CreateCategory @created="addNewCategory" />
 
-        <EditCategory :categories="categories" />
+        <EditCategory
+          v-if="categories.length"
+          :categories="categories"
+          :key="categories.length + updateCount"
+          @updated="updateCategories"  
+        />
+        <p v-else class="center">Категорий пока нет</p>
       </div>
     </section>
   </div>
@@ -23,7 +29,8 @@ export default {
   data() {
     return {
       categories: [],
-      loading: true
+      loading: true,
+      updateCount: 0
     }
   },
   async mounted() {
@@ -38,7 +45,12 @@ export default {
   methods: {
     addNewCategory(category) {
       this.categories.push(category);
-      console.log(this.categories);
+    },
+    updateCategories(category) {
+      const idx = this.categories.findIndex(c => c.id === category.id);
+      this.categories[idx].title = category.title;
+      this.categories[idx].limit = category.limit;
+      this.updateCount++; // чтобы вынужденно перерисовать компонент vue увеличиваем это значение которая передается в :key
     }
   }
 }

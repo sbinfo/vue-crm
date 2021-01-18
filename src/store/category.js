@@ -19,6 +19,15 @@ export default {
                 throw e;
             }
         },
+        async updateCategory({ commit, dispatch }, { title, limit, id }) {
+            try {
+                const uid = await dispatch('getUid');
+                await firebase.database().ref(`/users/${uid}/categories`).child(id).update({title, limit});
+            } catch (e) {
+                commit('setError', e);
+                throw e;
+            }
+        },
         async createCategory({ commit, dispatch }, { title, limit }) {
             try {
                 // Получаем id пользователья чтобы категорию записать именно к нужному пользователью
