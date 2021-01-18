@@ -12,7 +12,8 @@
           v-if="categories.length"
           :categories="categories"
           :key="categories.length + updateCount"
-          @updated="updateCategories"  
+          @updated="updateCategories"
+          @deleted="deleteCategory"
         />
         <p v-else class="center">Категорий пока нет</p>
       </div>
@@ -45,6 +46,10 @@ export default {
   methods: {
     addNewCategory(category) {
       this.categories.push(category);
+    },
+    deleteCategory(catId) {
+      this.categories = this.categories.filter(item => item.id !== catId);
+      this.updateCount--;
     },
     updateCategories(category) {
       const idx = this.categories.findIndex(c => c.id === category.id);

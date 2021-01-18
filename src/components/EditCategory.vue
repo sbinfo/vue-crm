@@ -49,6 +49,16 @@
           Обновить
           <i class="material-icons right">send</i>
         </button>
+        
+        <button
+          type="button"
+          class="btn waves-effect red lighten-2" 
+          style="margin-left: 15px"
+          @click="deleteCategory"  
+        >
+          Удалить
+          <i class="material-icons right">delete_forever</i>
+        </button>
       </form>
     </div>
   </div>
@@ -110,6 +120,14 @@ export default {
         this.$emit('updated', categoryData);
         
       } catch (e) {}
+    },
+    async deleteCategory() {
+      try {
+        await this.$store.dispatch('deleteCategory', this.current);
+
+        this.$message('Категория удалена');
+        this.$emit('deleted', this.current);
+      } catch (e) {}
     }
   },
   mounted() {
@@ -117,6 +135,7 @@ export default {
     this.select = M.FormSelect.init(this.$refs.select);
     // Для повторной инициализации input materialize при добавление динамических данных
     M.updateTextFields();
+    console.log(this.categories)
   },
   destroyed() {
     // Очистка плагина для select
